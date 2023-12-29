@@ -8,7 +8,7 @@ import GroupedTeamMembers from './GroupedTeamMembers';
 import Nav from './Nav';
 import NotFound from './NotFound';
 function App() {
-
+  
   const [selectedTeam, setSelectedTeam] = useState(JSON.parse(localStorage.getItem('selectedTeam')) || "TeamB");
 
   const [employees, setEmployees] = useState(JSON.parse(localStorage.getItem('employeeList')) || [{
@@ -130,9 +130,11 @@ function App() {
             handleTeamSelectionChange={handleTeamSelectionChange}
           />}>
         </Route>
-        <Route path="/GroupedTeamMembers" element={<GroupedTeamMembers />}>
+        <Route path="/GroupedTeamMembers" element={<GroupedTeamMembers employees={employees}
+          selectedTeam={selectedTeam}
+          setSelectedTeam={setSelectedTeam} />}>
         </Route>
-        <Route path="*" element={<NotFound/>}>
+        <Route path="*" element={<NotFound />}>
         </Route>
       </Routes>
       <Footer />
